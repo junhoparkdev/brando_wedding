@@ -1,0 +1,1441 @@
+@import url('./fonts.css');
+@import url('./reset.css');
+@import url('./skip.css');
+
+// 중첩코딩
+#wrap {
+    width: 100%;
+    height: 100%;
+    #header {
+        width: 100%;
+        height: 86px;
+        background: #93e4cf;
+        position: fixed;
+        top:0;
+        left:0;
+        z-index: 3;
+
+        .container {
+            width: 100%;
+            max-width: 1170px;
+            height: 100%;//86px
+            margin: 0 auto;
+            //background-color: red;
+
+            .gap {
+                width: 100%;
+                height: 100%;/* 높이 너비 설정해줘야 적용 됨 */
+                padding: 0 15px;//실질적인 컨텐트 너비는 1140
+                // background-color: yellow;
+                display: flex;
+                
+                .left-menu-box {
+                    width: 38.2%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: flex-end;//이렇게 하고 자식에도 flex주면 손자도 정렬 영향 받음
+                    align-items: center;
+                    ul {
+                        display: flex;         
+                        padding: 0 25px 0 0;//여백 띄우기 연습용. 이걸로 중앙 그림으로부터 원하는 만큼 띄울 수 있다.
+                        li {
+                            padding: 0 10px;//메뉴 간격 조절
+                            
+                            a {
+                                color:#626262;
+                                font-size: 13px;
+                                font-weight: 600;
+                                &:focus {
+                                    color:#d32b55;
+                                }
+                                &:hover {
+                                    color:#d32b55;
+                                }
+                                &.on {
+                                    color:#d32b55;
+                                }
+                            }
+                        }
+                    }
+                }
+                .center-img-box {
+                    width: 23.6%;
+                    height: 100%;
+                    a {
+                        img {
+                            width: 100%;
+                            max-width: 269px;//반응형?
+                        }
+                    }
+                }
+                .right-menu-box {
+                    width: 38.2%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    ul {
+                        padding: 0 0 0 25px;
+                        display: flex;
+                        li {
+                            padding: 0 10px;
+                            a {
+                                color:#626262;
+                                font-size: 13px;
+                                font-weight: 600;
+                                &:focus {
+                                    color:#d32b55;
+                                }
+                                &:hover {
+                                    color:#d32b55;
+                                }
+                                &.on {
+                                    color:#d32b55;
+                                }
+                            }
+                            
+                        }
+                    }
+                }
+
+
+
+            }
+        }
+
+
+    }
+
+    #main {
+        z-index: 2;
+        position: relative;
+        width: 100%;
+        
+        #section1 {
+            width: 100%;
+            .container {
+                width: 100%;
+                .slide-container {
+                    position: relative;
+                    z-index: 1;
+                    width: 100%;
+                    .slide-view {
+                        width: 100%;
+                        overflow:hidden;
+                        .slide-wrap {
+                            width: 100% * 4;//이미지가 4개가 있으니까 1231
+                            display: flex; //이미지 일렬로 정렬
+                            animation: slide 15s infinite ease-in-out; //대기시간 4초 이동시간 1초 이미지 3개 총 15초. 멈추는게 아니라 롤링이니까 bothj같은 거 쓸 필요 없음
+                            .slide {
+                                width: 100%;
+                                height: 100vh;//여기 잡으면 위에도 다 높이 잡힘
+                                background: url() no-repeat 50% 50%;
+                                background-size: cover;
+
+                                 //슬라이드 이미지 검정 투명 cap
+                                 &::after {
+                                    content: '';
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    width: 100%;
+                                    height: 100%;
+                                    background: rgba(0, 0, 0, 0.1);
+                                    //왜 점점 어두워지지?앱솔루트인데 포지션 안 잡아서 그럼
+                                } 
+                                
+                                &.slide1 {
+                                    background-image: url(../img/wedding-img1.jpg);
+                                    
+                                }
+                                &.slide2 {
+                                    background-image: url(../img/wedding-img2.jpg);
+
+                                }
+                                &.slide3 {
+                                    background-image: url(../img/wedding-img3.jpg);
+
+                                }
+
+                               
+                               
+                               
+                                
+                            }
+                        }
+                    }
+
+
+                    
+
+                }
+                .title {
+                    position: absolute;//캡과 타이틀 겹치게
+                    z-index: 2;//슬라이드컨테이너의 캡보다 위로 올라갸아함
+                    width: 100%;
+                    height: 100vh;//부모인 컨테이너의 높이가 잡혀있지 않음
+                    top: 0;
+                    left: 0;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+                    
+
+                    div {
+                        width: 100%;
+                        max-width: 307px;//그림의 가로 픽셀
+                        img {width: 100%;}
+                        hr {
+                            width: 100%;
+                            height: 4px;
+                            border: 0;
+                            border-top: 1px solid #85d4c0;
+                            border-bottom: 1px solid #85d4c0;
+                            margin: 50px 0;
+                        }
+                        h2 {
+                            color: #fff;
+                            font-size: 18px;
+                            font-weight: 600;
+                            padding: 0 0 8px 0;
+                        }
+                        h3 {
+                            color: #85d4c0;
+                            font-size: 24px;
+                            font-weight: 700;
+                        }
+                    }
+                }
+                
+            }
+        }
+
+        @keyframes slide {
+              0.00% {transform: translate(-1903px * 0);} 
+              6.67% {transform: translate(-1903px * 0);} 
+             13.33% {transform: translate(-1903px * 0);}
+             20.00% {transform: translate(-1903px * 0);}
+             26.67% {transform: translate(-1903px * 0);}
+             33.33% {transform: translate(-1903px * 1);}
+             40.00% {transform: translate(-1903px * 1);}
+             46.67% {transform: translate(-1903px * 1);}
+             53.33% {transform: translate(-1903px * 1);}
+             60.00% {transform: translate(-1903px * 1);}
+             66.67% {transform: translate(-1903px * 2);}
+             73.33% {transform: translate(-1903px * 2);}
+             80.00% {transform: translate(-1903px * 2);}
+             86.67% {transform: translate(-1903px * 2);}
+             93.33% {transform: translate(-1903px * 2);}
+            100.00% {transform: translate(-1903px * 3);}//마지막에 적은 1로 갔다가 다시 깜빡거려서 처음 1로 돌아감. 인지를 못할뿐
+
+        }
+
+        
+        
+        
+        
+
+        #section2 {
+            width:100%;
+            height: 451.875px + 130px + 130px;
+            // height: calc( 130px + 451.875px  + 130px );
+            // height: 711.875px;
+            padding: 130px 0;
+            background: #fff;
+
+
+            .container {
+                width: 100%;
+                max-width: 1170px;
+                margin: 0 auto;
+                height: 100%;//451.875px
+
+                .gap {
+                    width: 100%;
+                    padding: 0 15px;
+                    height: 100%;
+            
+                    .title {
+                        width: 100%;
+                        text-align: center;
+                        padding: 0 0 90px 0;
+                        height: 30.488px;
+                        h2 {
+                            display: inline-block;
+                            font-size: 24px;
+                            color: #e15276; 
+                            position: relative;
+                            font-weight: 700;
+                            &::before{
+                                content:'';
+                                position: absolute;
+                                left: -60px;
+                                top: 50%;
+                                margin: -0.5px 0 0 0;
+                                width: 40px;
+                                height: 1px;
+                                background: #93e4cf;
+                            }                           
+                            &::after{
+                                content:'';
+                                position: absolute;
+                                right: -60px;
+                                top: 50%;
+                                margin: -0.5px 0 0 0;
+                                width: 40px;
+                                height: 1px;
+                                background: #93e4cf;
+                            }                           
+                        }
+                    }
+           
+                    
+                    .content {
+                        width: 100%; //1140px
+                        height: 100%;//컨테이너의 451.875px
+                        display: flex;//여자 구역과 남자 구역 수평으로 배치하기 위함
+                        flex-wrap: nowrap;
+
+                        .female-box {
+                            width: 50%;//남자 여자 각각 50%
+                            height: 361.88px;
+                            padding: 0 15px;//여백 주기
+                            display: flex; //여자 구역 내에서 사진 구역, 텍스트 구역 배치
+                            
+                            .female-left-box {
+                                width: 50%;//그 50%에서 왼쪽 50% 오른쪽 50%                           
+                                display: flex;
+                                flex-flow: column;//사진 구역, 아이콘 구역 위 아래로 배열
+                                justify-content: space-between;//아이콘 박스 밑바닥에 붙이기
+                                
+                                figure {
+                                    text-align: center;// img 가운데 정렬
+                                    img {
+                                        width: 100%;
+                                        max-width: 248px;//사진 너비
+                                    }
+                                }
+                                
+                                .icon-box {    
+                                    height: 23px; //아이콘 박스 높이                               
+                                    text-align: center;// 아이콘 중앙 정렬
+                                    
+                                    a {
+                                        padding: 0 10px;// 아이콘끼리 간격 띄우기 용도
+                                    }
+                                }
+                            }
+
+                            .female-right-box {
+                                padding: 0 15px;
+                                width: 50%;
+                                height: 100%;
+                                
+                                .text-box {
+                                    height: 282.07px;
+                                    display: flex;
+                                    flex-flow: column;
+                                    justify-content: space-between;
+                                    
+                                    i {
+                                        display:block;
+                                        font-size: 40px;
+                                        color:#85d4c0;
+                                    }
+                                    
+                                    h2 {
+                                        font-size: 18px;font-weight: 700; color:#ccd485;
+                                        line-height: 140%;letter-spacing: -0.3px;
+                                    }
+                                    
+                                    h3 {
+                                        font-size: 13px;font-weight: 600;
+                                        margin: 23px 0 0 0;//홈페이지 기준
+                                    }
+                                    
+                                    p {
+                                        font-size: 13px; font-family: 'Roboto';
+                                        line-height: 170%;
+                                        margin: 10px 0 0 0;
+                                    }
+                                }
+                            }
+                        }
+                        
+                        
+                        .male-box {
+                            width: 50%;
+                            padding: 0 15px;
+                            height: 361.88px;
+                            display: flex;//left-box와 text-box 분배
+                            
+                            .male-left-box {
+                                width: 50%;
+                                height: 100%;
+                                display: flex;
+                                flex-flow: column;
+                                justify-content: space-between;
+                                
+                                figure {
+                                    
+                                    img {
+                                        width: 100%;
+                                        max-width: 248px;                                       
+                                    }
+                                }
+                                
+                                .icon-box{
+                                    text-align: center;// 아이콘 중앙 정렬
+                                    height: 23px; //아이콘 박스 높이                         
+                                    a {
+                                        padding: 0 10px;// 아이콘끼리 간격 띄우기 용도
+                                    }
+                                }
+
+                            }
+
+                            .male-right-box {
+                                padding: 0 15px;
+                                width: 50%;
+                                height: 100%;
+                                
+                                .text-box {
+                                    height: 282.07px;
+                                    display: flex;
+                                    flex-flow: column;
+                                    justify-content: space-between;
+                                    
+                                    i {
+                                        display:block;
+                                        font-size: 40px;
+                                        color:#85d4c0;
+                                    }
+                                    
+                                    h2 {
+                                        font-size: 18px;font-weight: 700; color:#ccd485;
+                                        line-height: 140%;letter-spacing: -0.3px;
+                                    }
+                                    
+                                    h3 {
+                                        font-size: 13px;font-weight: 600;
+                                        margin: 23px 0 0 0;//홈페이지 기준
+                                    }
+                                    
+                                    p {
+                                        font-size: 13px;font-family: 'Roboto';
+                                        line-height: 170%;
+                                        margin: 10px 0 0 0;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+
+            }
+
+
+
+
+        }
+
+        #section3 {
+            width:100%;
+            height: 346px;
+            background: url(../img/wedding-img2.jpg) no-repeat 50% 50% fixed;
+            background-size: 100% auto;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &::before {
+                content:'';//넣는 거 까먹지 말 것!!
+                position: absolute;
+                z-index: 1;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(37, 37, 37, 0.4);
+                
+            }
+            h2 {
+                position: relative;
+                z-index: 2;
+                text-align: center;
+                color: #85d4c0;
+                font-weight: 600;
+                font-size: 24px;  
+            }
+        }
+        
+        #section4 {
+            width:100%;
+            padding: 130px 0;
+            background: #fff;
+            border-bottom: 1px solid #ccc;
+
+            .container {
+                    width: 1170px;
+                    margin: 0 auto;
+                    
+              >.gap {
+                width: 100%;
+
+                    .title {
+                        width: 100%;
+                        text-align: center;
+                        padding: 0 0 90px 0;
+                        h2 {
+                            display: inline-block;
+                            font-size: 24px;
+                            color: #e15276; 
+                            position: relative;
+                            font-weight: 700;
+                            &::before{
+                                content:'';
+                                position: absolute;
+                                left: -60px;
+                                top: 50%;
+                                margin: -0.5px 0 0 0;
+                                width: 40px;
+                                height: 1px;
+                                background: #93e4cf;
+                            }                           
+                            &::after{
+                                content:'';
+                                position: absolute;
+                                right: -60px;
+                                top: 50%;
+                                margin: -0.5px 0 0 0;
+                                width: 40px;
+                                height: 1px;
+                                background: #93e4cf;
+                            }                           
+                        }
+
+                    }
+
+                    .content {
+                        width: 100%;
+                        
+                       ul {
+                        width: 100%;
+                        display: flex;
+                        li {
+                            width: 33.33333%;
+                            .col-gap {
+                                width:100%;
+                                padding: 0 15px;
+                                text-align: center;
+                                .box {
+                                    width:100%;
+                                    border: 5px solid #eee;
+                                    .gap {
+                                        width:100%;
+                                        padding: 60px;
+                                        h2 {
+                                            padding: 0 0 15px 0;
+                                            i {
+                                                font-size: 60px;
+                                                color: #85d4c0;
+                                            }                                    
+                                        }
+                                        h3 {font-size: 15px; font-weight: 500;}
+                                        hr {border:0;background: #ccc;width:100%;height:1px;margin: 25px 0;}
+                                        p {color: #929292; font-size: 13px;padding: 0 0 10px 0;}
+                                        h4 {color: #929292; font-size: 13px;}
+                                    }
+                                }
+
+                                           
+                            }
+                        }
+                       }
+                    
+                        
+                    }
+                
+                
+                
+                
+                }
+            }
+        }
+
+        #section5 {
+            width: 100%;
+            padding: 130px 0;
+            background: #fff;
+           .container {
+            width: 100%;
+            max-width: 1170px; /* 반응형 */
+            margin: 0 auto; /* 컨테이너 가운데 정렬 용도 */
+
+                .gap {
+                    width: 100%;
+                    .title {
+                        width: 100%;
+                        text-align: center;
+                        padding: 0 0 90px 0;
+                        h2 {
+                            display: inline-block;
+                            font-size: 24px;
+                            color: #e15276;
+                            position: relative;
+                            font-weight: 700;
+                            &::before {
+                                content: '';
+                                position: absolute;
+                                margin: -0.5px 0 0 0;
+                                left: -60px;
+                                top: 50%;
+                                width: 30px;
+                                height: 1px;
+                                background: #93e4cf;
+                            }
+                            &::after {
+                                content: '';
+                                position: absolute;
+                                margin: -0.5px 0 0 0;
+                                right: -60px;
+                                top: 50%;
+                                width: 30px;
+                                height: 1px;
+                                background: #93e4cf;
+                            }
+                        }
+                    }
+
+                    .content { 
+                        width: 100%;
+                        overflow: hidden;
+                        .gallery-box {
+                            width: 1181px; /* 그림 묶음에 여백이 있기 때문에 그걸 고려해서 1170보다 크게 만듦 */
+                            margin: 0 0 0 -11px;
+                            ul{
+                                width: 100%;
+                                display: flex;
+                                flex-flow: row wrap; /* 기본 상태는 nowrap인데 줄바굼 없음을 의미. 즉 wrap으로 해서 모두 합해서 100%되면 줄바꿈 일어나게 */
+                                li {
+                                    width: 25%;
+                                    .col-gap { /* 별도로 갭 클래스를 만들면 정확하게 영역 만들 수 있음 */
+                                        /* width: 100%;
+                                        padding: 0 0 11px 11px; */
+
+                                        width: auto;
+                                        margin: 0 0 11px 11px;
+                                        /* margin 쓸거면 
+                                        width: auto 쓰면 됨. 마진 제외하고 나머지 너비를 채우겠다
+                                        */
+                                        /* 이미지 넘치면 사라지게 하기 위한 용도 */
+                                        overflow: hidden;
+
+                                        /* 패딩쓰면 그것도 너비 높이에 포함되기 때문에 이미지 확대되도 여백까지 차게 됨. 그걸 방지하려면 마진 써야 함 */
+                                        a {
+                                            display: block;
+                                            width: 100%;
+                                           
+                                            figure {
+                                                width: 100%;
+                                                img {
+                                                    width: 100%;
+                                                    transition: all 0.3s;
+                                                    &:hover {
+                                                        /* 변형: 크기(1.2배) */
+                                                        transform: scale(1.2);
+                                                        opacity: 0.2;
+                                                        cursor: url(../img/icon-zoom.png), auto; /* 오토: 이미지 없으면 기본 나와라 */
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+           }
+        }
+
+        #section6 {
+            width:100%;
+            height: 500px + 130px + 130px;
+            background: url(../img/wedding-img16.jpg) no-repeat 50% 50%;
+            background-size: cover;
+            padding: 130px 0;
+            position: relative;
+            z-index: 2;
+            &::before {
+                content:'';
+                z-index: 1;
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(37, 37, 37, 0.5);
+              } 
+
+              .container {
+                position: relative;
+                z-index: 2;
+                width: 100%;
+                max-width: 1170px;
+                height: 100%;
+                margin: 0 auto;
+                .gap {
+                    width: 100%;
+                    height: 100%;
+                    padding: 0 15px;
+                    .content {
+                        width: 100%;
+                        height: 100%;
+                        
+                        
+                        ul {
+                            width: 100%;
+                            height: 100%;
+                            display: flex;
+                            justify-content: center;
+                            
+                            
+                            li {
+                                width: 50%;
+                                height: 100%;
+                                
+                            .col-gap {
+                                width: 100%;
+                                height: 100%;
+                                padding: 0 30px;
+                                
+                            .pink-box {
+                                
+                            width: 100%;
+                            height: 100%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            text-align: center;
+                            background: url(../img/wedding-img17.jpg) no-repeat 50% 50%;
+                            background-size: cover;
+                            outline: 5px #fff solid;
+                            outline-offset: -20px;
+                           
+                            p {
+                                width: 60%;           
+                                font-size: 28px;
+                                font-weight: 600;
+                                color: #fff;
+                                line-height: 120%;
+                            }
+                                }
+    
+    
+                            .submit-box {
+                                background: #93e4cf;  
+                                text-align: center;
+                                width: 100%;
+                                height: 100%;
+                                
+                               
+                                h2 {
+                                    width: 80%;
+                                    font-size: 28px;
+                                    font-weight: 600;
+                                    color: #626262;
+                                    margin: 0 auto;
+                                    padding: 30px 0 20px 0;
+                                }
+
+                               #messageForm {
+                                    width: 100%;
+                                    height: 100%;
+                                ul.submit-form {
+                                    width: 80%;
+                                    height: 80%;
+                                    display: flex;
+                                    flex-flow: column;
+                                    
+                                    align-items: center;
+                                    margin: 0 auto;
+                                    li {
+                                        height: 47px;
+                                        width: 100%;
+                                        margin: 20px 0;
+                                        
+                                        &:nth-child(3) {
+                                            display: flex;
+                                            flex-flow: row;
+                                            justify-content: space-between;
+                                        }
+
+                                        div {
+                                            width:47%;
+                                            select {
+                                                width: 100%;
+                                                height: 47px;
+                                                background: rgb(255, 255, 255) url(../img/select-arrow.png) no-repeat 97% 50%;
+                                                border: 0;
+                                                // 원래의 모양 사용안함
+                                                appearance: none;
+                                                padding: 0 15px;                                                                                                                                
+                                                
+                                                &:focus {
+                                                    outline: 0;
+                                                } 
+                                               
+                                            }
+                                        }
+
+                                        input {
+                                            width: 100%;
+                                            height: 100%;
+                                            background: #fff;
+                                            border: 0;
+                                            border-radius: 2px;
+                                            padding: 0 15px;
+                                            &::placeholder {
+                                                color: #ccc; 
+                                            }
+                                            &:focus {
+                                                outline: 0;
+                                            }
+                                        }
+
+                                        button {
+                                            padding: 0 15px;                                                            
+                                            height: 50px;
+                                            background: #000;
+                                            color: #fff;
+                                            border: 3px solid #000;
+                                            border-radius: 3px;
+                                            cursor: pointer;
+                                            font-weight: 600;
+                                            font-size: 13px;
+                                            text-transform: uppercase;
+                                            transition: all 0.3s;
+                                            &:hover {
+                                                background: #fff;
+                                                color: #000;
+                                            }
+                                        }
+                                    }
+
+                                }
+                               }
+                                
+                               .content-foot {
+                                    display: none;
+                                    font-size: 13px;
+                                    color: #626262;
+                                    text-align: center;
+                                    padding: 10px 15px;
+                                    border:2px solid #cc3;
+                                    &.foot1 {// css에서는 띄어쓰기 돼서 ~~~ foot1이 됨
+                                        &.on {
+                                            display: block;
+                                        }
+                                    }
+                                    &.foot2 {
+                                        &.on {
+                                            display: block;
+                                        }
+                                    }
+
+
+
+
+                               }
+
+
+
+                              
+                                
+    
+                                }
+    
+    
+                            }
+                      
+                           }
+                        }
+                       
+                        
+            
+            
+            
+            
+                    }
+                
+                
+                
+                
+                
+                }
+              }
+
+
+        }
+
+        #section7 {
+            width:100%;
+            height: 339.375px + 130px + 130px;
+            background: #fff;
+            padding: 130px 0;
+
+            .container {
+                height: 100%;
+                width: 100%;
+                max-width: 1170px;
+                margin: 0 auto;
+                .gap {
+                    height: 100%;
+                    width: 100%;
+                    padding: 0 15px;
+                    .title {
+                        width: 100%;
+                        text-align: center;
+                        padding: 0 0 90px 0;
+                        height: 30.488px;
+                        h2 {
+                            display: inline-block;
+                            font-size: 24px;
+                            color: #e15276; 
+                            position: relative;
+                            font-weight: 700;
+                            &::before{
+                                content:'';
+                                position: absolute;
+                                left: -60px;
+                                top: 50%;
+                                margin: -0.5px 0 0 0;
+                                width: 40px;
+                                height: 1px;
+                                background: #93e4cf;
+                            }                           
+                            &::after{
+                                content:'';
+                                position: absolute;
+                                right: -60px;
+                                top: 50%;
+                                margin: -0.5px 0 0 0;
+                                width: 40px;
+                                height: 1px;
+                                background: #93e4cf;
+                            }                           
+                        }
+                    }
+                    
+                    .content {
+                        height: 100%;
+                        width: 100%;
+                        display: flex;
+                        flex-flow: column;
+                        justify-content: space-between;
+                        align-items: center;
+                        
+                        p { text-align: center;
+                            margin: 50px 0 0 0;
+                            width: 40%;
+                            height: 115px;
+                            font-size: 13px;
+                            font-family: 'roboto';
+                            line-height: 170%;
+                            letter-spacing: 0.3px;
+                            
+
+                        }
+                        ul {
+                            margin: 50px 0 0 0;
+                            width: 100%;
+                            display:flex;
+                            justify-content: center;
+
+                            li {
+                                padding: 0 60px;
+                                
+                                
+                                img {
+                                    width: auto;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+
+        }
+
+        #section8 {
+            width:100%;
+            height: 675.250px + 130px + 130px;
+            background: #f7f7f7;
+            padding: 130px 0;   
+            
+            
+
+            .container {
+                .gap {
+                    .title {
+                        width: 100%;
+                        text-align: center;
+                        padding: 0 15px 90px 15px;
+                        h2 {
+                            display: inline-block;
+                            font-size: 24px;
+                            color: #e15276; 
+                            position: relative;
+                            font-weight: 700;
+                            &::before{
+                                content:'';
+                                position: absolute;
+                                left: -60px;
+                                top: 50%;
+                                margin: -0.5px 0 0 0;
+                                width: 40px;
+                                height: 1px;
+                                background: #93e4cf;
+                            }                           
+                            &::after{
+                                content:'';
+                                position: absolute;
+                                right: -60px;
+                                top: 50%;
+                                margin: -0.5px 0 0 0;
+                                width: 40px;
+                                height: 1px;
+                                background: #93e4cf;
+                            }                           
+                        }
+                    }
+
+                    .content {
+                        width: 100%; //1170px이 아니라 모든 너비를 쓰겠다
+                        .slide-container {
+                            width: 100%;
+                            .slide-view {
+                                width: 100%;
+                                overflow: hidden; //이게 있어서 옆쪼겡 있던 그림이 사라지고 스크롤 바 사라짐
+                                
+                                .slide-wrap {//기차 5칸: 우측에서 좌측으로 이동하는 애니메이션 구현
+                                    width: 125%; //사진 하나에 25%씩 5장 해서 125%
+                                    display: flex;
+                                    animation: slide-ani 4s ease both;//both forwards 등 forwards는 알아서 해라
+                                    animation: slide-ani 4s ease-in both;//in은 가속
+                                    animation: slide-ani 4s ease-out both;//out은 감속
+                                    animation: slide-ani 4s ease-in-out both;//둘다쓰면 가감속
+                                    
+
+
+                                    .slide {
+                                        width: 25%;
+                                        //사용자 선택 안 함
+                                        user-select: none;
+
+                                        .col-gap {
+                                            width: auto;
+                                            margin:0 15px;
+                                            
+                                            .top-box {
+                                                width: 100%;
+                                                //height: 322.172px;
+                                                position: relative;
+                                                overflow: hidden;
+                                                
+
+                                                &::after {//날짜 박스
+                                                    content: '';
+                                                    display: block;
+                                                    position: absolute;
+                                                    top: 0;
+                                                    left: 0;
+                                                    width: 100%;//이미지하고 같게
+                                                    height: 100%;//이미지하고 같게
+                                                    background: rgba(0, 0, 0, 0);
+                                                    z-index: 2;
+                                                    //이미지에만 올려야 손가락 나오게. 여기다 하는 이유는 검은 그림이 덮고 있기 때문
+                                                    cursor: pointer;
+                                                }
+
+                                                img {//img에는 비포 애프터 먹지 않음
+                                                   
+                                                    width: 100%;
+                                                    position: relative;//z인덱스 쓰기 위함
+                                                    z-index: 1;//밑바닥
+                                                    transition: all 0.3s;//col-gap 영역에 올리면 img태그의 형식이 변함
+
+                                                    
+                                                    
+                                                }
+                                                span{
+                                                    position: absolute;
+                                                    right: 0;
+                                                    bottom: 0;
+                                                    padding: 25px 25px;
+                                                    background: #fff;
+                                                    z-index: 3;
+                                                    em {
+                                                        font-size: 13px;
+                                                        color: #626262;
+                                                        font-weight: 600;
+                                                        text-transform: uppercase;
+                                                    }
+                                                }
+                                            }
+                                            .bottom-box {
+                                                width: 100%;
+                                                padding: 25px;
+                                                background: #fff;
+                                                display: flex;
+
+                                                h3 {
+                                                    font-size: 35px;
+                                                    font-weight: 700;
+                                                    color: #d32b55;
+                                                    margin: 0 25px 0 0;
+                                                }
+                                                div {
+                                                    h4 {
+                                                        font-size: 15px;
+                                                        font-weight: 600;
+                                                        color: #333;
+                                                        text-transform: uppercase;//전부 대문자로 바꾸기
+                                                    }
+                                                    p {
+                                                        font-size: 15px;
+                                                        color: #626262;
+                                                        line-height: 180%;
+                                                        font-family: 'Roboto';
+                                                        padding: 10px 0 20px 0;
+                                                    }
+                                                    i {
+                                                        display: inline-block;
+                                                        width: 30px;
+                                                        height: 4px;
+                                                        background: #93e4cf;
+                                                    }
+                                                }
+                                                
+                                            }
+
+                                            &:hover {//col-gap영역에 올리면 img가 변화
+                                                
+                                                cursor: url(../img/icon-move.png), auto;
+                                               .top-box {
+                                                &::after {
+                                                    background: rgba(0, 0, 0, 0.3);
+                                                }
+                                               }
+                                                img {
+                                                    transform: scale(1.2);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+        //애니메이션 이름 
+        //slide-ani 3초 대기 1초 이동
+        //키프레임 
+        //이동 트랜스폼: 우측에서 좌측으로 이동 트랜스레이트x( -475.75px)
+        //이동 transform: translatex( -475.75px);
+        @keyframes slide-ani {
+              0% {transform: translateX(-475.75px * 0)}
+             25% {transform: translateX(-475.75px * 0)}
+             50% {transform: translateX(-475.75px * 0)}
+             75% {transform: translateX(-475.75px * 0)}
+            100% {transform: translateX(-475.75px * 1)}
+        }
+        #section9 {
+            width:100%;
+            
+            background: #fff;
+            padding: 130px 0; 
+            border-bottom: 1px solid #ccc;
+
+
+            .container {
+                width: 100%;
+                max-width: 1170px;
+                margin: 0 auto;
+                .gap {
+                    width: 100%;
+                    .title {
+                        width: 100%;
+                        text-align: center;
+                        padding: 0 0 90px 0;
+                        height: 30.488px;
+                        h2 {
+                            display: inline-block;
+                            font-size: 24px;
+                            color: #e15276; 
+                            position: relative;
+                            font-weight: 700;
+                            &::before{
+                                content:'';
+                                position: absolute;
+                                left: -60px;
+                                top: 50%;
+                                margin: -0.5px 0 0 0;
+                                width: 40px;
+                                height: 1px;
+                                background: #93e4cf;
+                            }                           
+                            &::after{
+                                content:'';
+                                position: absolute;
+                                right: -60px;
+                                top: 50%;
+                                margin: -0.5px 0 0 0;
+                                width: 40px;
+                                height: 1px;
+                                background: #93e4cf;
+                            }                           
+                        }
+                    }
+                    .content {
+                        width: 100%;
+                        > ul {
+                            width: 100%;
+                            display: flex;
+                            flex-flow: row wrap;//반응형에서 줄바꿈 일어나게
+
+                            > li {
+                                width: (100% / 3);
+                                .col-gap {
+                                    margin: 0 15px;//마진 쓰는 이유: 패딩 쓰면 패딩영역도 판정 생기니까. 마진은 외부영역임
+                                    .img-box {
+                                        width: 100%;
+                                        img {
+                                            width: 100%;
+                                            transition: all 0.3s;
+                                            &:hover {
+                                                filter: grayscale(1);
+                                            }
+                                        }
+                                    }
+                                    .text-box {
+                                        width: 100%;
+                                        padding: 30px 0 0 0;
+                                        ul {
+                                            width: 100%;
+                                            li {
+                                                width: 100%;
+                                                padding: 0 0 15px 0;
+                                                &:first-child {
+                                                    a {
+                                                        padding: 5px 15px;
+                                                        border-radius: 2px;
+                                                        background: #000;
+                                                        color: rgba(255, 255, 255, 1);
+                                                        font-size: 10px;
+                                                        font-weight: 500;
+                                                        transition: all 0.3s;
+
+                                                        &:hover {
+                                                            //opacity: 0.7; 배경까지 투명해져서 적합하지 않음
+                                                            color: rgba(255, 255, 255, 0.7);
+                                                        }
+                                                    }
+                                                }
+                                                h3 {
+                                                    a {
+                                                        font-size: 15px;
+                                                        font-weight: 600;
+                                                        line-height: 130%;
+                                                        color: #333;
+                                                    }
+                                                }
+                                                p {
+                                                    font-size: 13px;
+                                                    line-height: 180%;
+                                                    color: #626262;
+                                                    font-family: 'Roboto';
+                                                }
+                                                hr {
+                                                    border: 0;
+                                                    width: 100%;
+                                                    height: 1px;
+                                                    background: #eee;//배경색을 이용해 선 만들기
+                                                    margin: 15px 0 20px 0;
+                                                }
+                                                
+                                                &:last-child {
+                                                    color: #999;
+                                                    font-size: 11px;
+                                                    a {
+                                                        color: #999;
+                                                    }
+                                                }
+
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        #section10 {
+            width:100%;
+            
+            background: #fff;
+            padding: 130px 0 80px 0; 
+
+
+            .container {
+                width: 100%;
+                max-width: 1170px;
+                margin: 0 auto;
+                .gap {
+                    margin: 0 15px;
+                    .title {
+                        width: 100%;
+                        text-align: center;
+                        padding: 0 15px 90px 15px;
+                        h2 {
+                            display: inline-block;
+                            font-size: 24px;
+                            color: #e15276; 
+                            position: relative;
+                            font-weight: 700;
+                            &::before{
+                                content:'';
+                                position: absolute;
+                                left: -60px;
+                                top: 50%;
+                                margin: -0.5px 0 0 0;
+                                width: 40px;
+                                height: 1px;
+                                background: #93e4cf;
+                            }                           
+                            &::after{
+                                content:'';
+                                position: absolute;
+                                right: -60px;
+                                top: 50%;
+                                margin: -0.5px 0 0 0;
+                                width: 40px;
+                                height: 1px;
+                                background: #93e4cf;
+                            }                           
+                        }
+                    }
+
+                    .content {
+                        width: 100%;
+                        p {
+                            text-align: center;
+                            width: 456px;
+                            font-size: 13px;
+                            font-weight: 500;
+                            font-family: 'Roboto';
+                            color: #626262;
+                            line-height: 170%;
+                            margin: 0 auto;
+                            letter-spacing: 0.3px;
+                        }
+                    }
+                }
+            }
+        }
+        
+        #section11 {
+            width:100%;
+            height: 420px;
+            background: #fff;
+            iframe {
+                width: 100%;
+                height: 100%;
+                border: 0;
+            }
+        }
+
+
+    }
+    #footer {
+        z-index: 1;
+        position: relative;
+        width:100%;
+       
+        background: #fff;
+
+
+        .container {
+            width: 100%;
+            max-width: 1170px;
+            margin: 0 auto;
+            .gap {
+                margin: 0 15px;
+                .content {
+                    width: 100%;
+                    text-align: center;
+                    .foot-row1 {
+                        width: 100%;
+                        padding: 50px 0;
+                        border-bottom: 1px solid #ddd;
+                        a {
+                            margin: 0 20px;
+                            i {
+                                font-size: 22px;
+                                color: #575757;            
+                            }
+                        }
+                    }
+                    .foot-row2 {
+                        p {
+                            font-size: 15px;
+                            color: #575757;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    .gotop {
+        position: fixed;
+        bottom: 40px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;//원 형태
+        overflow: hidden;
+        z-index: 3;
+        a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 1);
+            color: #fff;
+            font-size: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            i {
+                font-size: 24px;
+                margin: -7px 0 0 0;
+            }
+        }
+    }
+
+}
